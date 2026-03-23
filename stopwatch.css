@@ -144,7 +144,7 @@ button {
   font-size: 0.95rem;
 }
 
-/* Scrollbar styling */
+
 #laps::-webkit-scrollbar {
   width: 6px;
 }
@@ -158,11 +158,6 @@ button {
   border-radius: 3px;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 25px 20px;
-  }
-  h1 { font-size: 2rem; }
-  #display { font-size: 3.2rem; }
-  button { padding: 12px 22px; font-size: 1rem; min-width: 90px; }
+#laps::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.5);
 }
