@@ -34,14 +34,17 @@ h1 {
 }
 
 #display {
-  font-size: 4.2rem;
+  font-size: 3rem;
   font-weight: bold;
   margin: 30px 0;
-  letter-spacing: 8px;
+  letter-spacing: 2px;
   font-variant-numeric: tabular-nums;
   background: rgba(0,0,0,0.2);
   padding: 15px;
   border-radius: 15px;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .buttons {

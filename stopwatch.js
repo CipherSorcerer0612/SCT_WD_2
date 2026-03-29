@@ -6,11 +6,12 @@ let lapStart = 0;
 let lapCount = 0;
 
 const display = document.getElementById('display');
-const startPauseBtn = document.getElementById('startPause');
-const stopBtn = document.getElementById('stopBtn');
-const resetBtn = document.getElementById('resetBtn');
-const lapBtn = document.getElementById('lapBtn');
-const clearLapsBtn = document.getElementById('clearLapsBtn');
+const startBtn = document.getElementById('start');
+const stopBtn = document.getElementById('stop');
+const resetBtn = document.getElementById('reset');
+const lapBtn = document.getElementById('lap');
+
+const clearLapsBtn = { disabled: true, addEventListener: () => {} };
 const lapsContainer = document.getElementById('laps');
 
 function formatTime(ms) {
@@ -33,7 +34,7 @@ function startTimer() {
       updateDisplay();
     }, 10);
     isRunning = true;
-    startPauseBtn.textContent = 'Pause';
+    startBtn.textContent = 'Pause';
     lapBtn.disabled = false;
   }
 }
@@ -42,7 +43,7 @@ function pauseTimer() {
   if (isRunning) {
     clearInterval(timer);
     isRunning = false;
-    startPauseBtn.textContent = 'Resume';
+    startBtn.textContent = 'Resume';
   }
 }
 
@@ -53,10 +54,9 @@ function resetTimer() {
   lapStart = 0;
   isRunning = false;
   updateDisplay();
-  startPauseBtn.textContent = 'Start';
+  startBtn.textContent = 'Start';
   lapBtn.disabled = true;
   clearLapsBtn.disabled = true;
-  lapsContainer.innerHTML = '<h2>Laps</h2>';
   lapCount = 0;
 }
 
@@ -83,20 +83,26 @@ function recordLap() {
 }
 
 function clearLaps() {
-  lapsContainer.innerHTML = '<h2>Laps</h2>';
+
   lapCount = 0;
   lapStart = elapsedTime; 
   clearLapsBtn.disabled = true;
 }
 
 
-startPauseBtn.addEventListener('click', () => {
+startBtn.addEventListener('click', () => {
   if (isRunning) {
     pauseTimer();
   } else {
     startTimer();
   }
 });
+stopBtn.addEventListener('click', pauseTimer);
+  if (isRunning) {
+    pauseTimer();
+  } else {
+    startTimer();
+  } 
 
 lapBtn.addEventListener('click', recordLap);
 resetBtn.addEventListener('click', resetTimer);
